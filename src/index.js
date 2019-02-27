@@ -1,10 +1,14 @@
 import postcss from "postcss"
-import replaceRuleSelector from "./replaceRuleSelector"
+import {pseudoClasses, replaceRuleSelector} from "./replaceRuleSelector"
 
 function explodeSelectors(options = {}) {
+  const ruleContainsPseudoClass = (rule) => {
+    return pseudoClasses.some(pC => rule.selector.includes(pC))
+  }
+
   return (css) => {
     css.walkRules(rule => {
-      if (rule.selector && rule.selector.indexOf(":matches") > -1) {
+      if (rule.selector && ruleContainsPseudoClass(rule)) {
         rule.selector = replaceRuleSelector(rule, options)
       }
     })

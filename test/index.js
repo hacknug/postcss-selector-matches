@@ -2,7 +2,7 @@ import tape from "tape"
 
 import postcss from "postcss"
 import plugin from "../src"
-import replaceRuleSelector from "../src/replaceRuleSelector"
+import {replaceRuleSelector} from "../src/replaceRuleSelector"
 
 function transform(css, options = {}) {
   return postcss(plugin(options)).process(css).css
