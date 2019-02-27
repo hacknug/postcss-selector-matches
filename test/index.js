@@ -47,19 +47,19 @@ tape("postcss-selector-matches", t => {
   t.equal(
     transform("tag :matches(tag2, tag3) :matches(tag4, tag5) {}"),
     "tag tag2 tag4, tag tag3 tag4, tag tag2 tag5, tag tag3 tag5 {}",
-    "should transform mutltiples :matches()"
+    "should transform multiple :matches()"
   )
 
   t.equal(
     transform("tag :matches(tag2, tag3) :matches(tag4, tag5), test {}"),
     "tag tag2 tag4, tag tag3 tag4, tag tag2 tag5, tag tag3 tag5, test {}",
-    "should transform mutltiples :matches() with stuff after"
+    "should transform multiple :matches() with stuff after"
   )
 
   t.equal(
     transform(":matches(tag) :matches(tag2, tag3):hover {}"),
     "tag tag2:hover, tag tag3:hover {}",
-    "should transform mutltiples :matches() with pseudo after"
+    "should transform multiple :matches() with pseudo after"
   )
 
   t.equal(
@@ -86,7 +86,7 @@ tape("postcss-selector-matches", t => {
   .c
 ) {}`),
     "a.b, a.c {}",
-    "should works with lots of whitespace"
+    "should work with lots of whitespace"
   )
 
   t.equal(
@@ -125,7 +125,7 @@ button:hover, button:active, .button:hover, .button:active {}`,
   t.equal(
     transform("article :matches(h1, h2, h3) + p {}"),
     "article h1 + p, article h2 + p, article h3 + p {}",
-    "should works correctly with adjacent selectors"
+    "should work correctly with adjacent selectors"
   )
 
   t.equal(
@@ -133,13 +133,13 @@ button:hover, button:active, .button:hover, .button:active {}`,
     `article h1 + p,
 article h2 + p,
 article h3 + p {}`,
-    "should works correctly with adjacent selectors and line break"
+    "should work correctly with adjacent selectors and line break"
   )
 
   t.equal(
     transform(".foo:matches(p) {color: red;}"),
     "p.foo {color: red;}",
-    "should works correctly with a class and an element"
+    "should work correctly with a class and an element"
   )
 
   t.equal(
